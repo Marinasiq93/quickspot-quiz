@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fef9f8;
+  --foreground: #2b1420;
+  --color-coral: #f05b61;
+  --color-coral-dark: #d84850;
+  --color-purple: #a54698;
+  --color-purple-dark: #833879;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-coral: var(--color-coral);
+  --color-coral-dark: var(--color-coral-dark);
+  --color-purple: var(--color-purple);
+  --color-purple-dark: var(--color-purple-dark);
+  --font-sans: var(--font-poppins);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
