@@ -8,6 +8,7 @@ type Row = {
   wrongCount: number;
   totalTimeMs: number;
   createdAt: string;
+  attemptCount: number;
 };
 
 export default function ParticipantsTable({ rows }: { rows: Row[] }) {
@@ -32,8 +33,22 @@ export default function ParticipantsTable({ rows }: { rows: Row[] }) {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.id} className="border-b border-black/5 last:border-0">
-              <td className="px-4 py-3 font-medium">{row.name}</td>
+            <tr
+              key={row.id}
+              className={`border-b border-black/5 last:border-0 ${
+                row.attemptCount > 1 ? "bg-amber-50" : ""
+              }`}
+            >
+              <td className="px-4 py-3 font-medium">
+                <div className="flex items-center gap-2">
+                  {row.name}
+                  {row.attemptCount > 1 && (
+                    <span className="rounded-full bg-amber-200 px-2 py-0.5 text-xs font-semibold text-amber-900">
+                      repetido · {row.attemptCount}x
+                    </span>
+                  )}
+                </div>
+              </td>
               <td className="px-4 py-3 text-foreground/70">{row.email}</td>
               <td className="px-4 py-3 text-foreground/70">{row.phone}</td>
               <td className="px-4 py-3 font-semibold text-coral">{row.score}</td>

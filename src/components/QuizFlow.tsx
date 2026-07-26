@@ -153,7 +153,7 @@ export default function QuizFlow() {
   }
 
   if (stage === "result" && result) {
-    return <ResultScreen result={result} onRestart={handleRestart} />;
+    return <ResultScreen result={result} />;
   }
 
   return null;

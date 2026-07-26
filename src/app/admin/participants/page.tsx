@@ -6,6 +6,7 @@ export const dynamic = "force-dynamic";
 
 type AttemptRow = {
   id: string;
+  participant_id: string;
   participant_name: string;
   score: number;
   correct_count: number;
@@ -19,11 +20,21 @@ export default async function AdminParticipantsPage() {
   const { data } = await supabaseAdmin
     .from("quiz_attempts")
     .select(
-      "id, participant_name, score, correct_count, wrong_count, total_time_ms, created_at, quiz_participants(email, phone)"
+      "id, participant_id, participant_name, score, correct_count, wrong_count, total_time_ms, created_at, quiz_participants(email, phone)"
     )
     .order("created_at", { ascending: false });
 
-  const rows = ((data as unknown as AttemptRow[]) ?? []).map((row) => ({
+  const attempts = (data as unknown as AttemptRow[]) ?? [];
+
+  const attemptCountByParticipant = new Map<string, number>();
+  for (const row of attempts) {
+    attemptCountByParticipant.set(
+      row.participant_id,
+      (attemptCountByParticipant.get(row.participant_id) ?? 0) + 1
+    );
+  }
+
+  const rows = attempts.map((row) => ({
     id: row.id,
     name: row.participant_name,
     email: row.quiz_participants?.email ?? "",
@@ -33,6 +44,7 @@ export default async function AdminParticipantsPage() {
     wrongCount: row.wrong_count,
     totalTimeMs: row.total_time_ms,
     createdAt: row.created_at,
+    attemptCount: attemptCountByParticipant.get(row.participant_id) ?? 1,
   }));
 
   return (

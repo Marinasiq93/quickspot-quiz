@@ -8,13 +8,7 @@ export type QuizResult = {
   totalQuestions: number;
 };
 
-export default function ResultScreen({
-  result,
-  onRestart,
-}: {
-  result: QuizResult;
-  onRestart: () => void;
-}) {
+export default function ResultScreen({ result }: { result: QuizResult }) {
   const seconds = (result.totalTimeMs / 1000).toFixed(1);
 
   return (
@@ -39,16 +33,10 @@ export default function ResultScreen({
 
       <Link
         href="/ranking"
-        className="mb-3 block w-full rounded-lg bg-coral px-4 py-2 font-medium text-white hover:bg-coral-dark"
+        className="block w-full rounded-lg bg-coral px-4 py-2 font-medium text-white hover:bg-coral-dark"
       >
         Ver ranking ao vivo
       </Link>
-      <button
-        onClick={onRestart}
-        className="w-full rounded-lg px-4 py-2 font-medium text-foreground/60 hover:bg-black/5"
-      >
-        Jogar novamente
-      </button>
     </div>
   );
 }
