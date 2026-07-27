@@ -3,7 +3,7 @@ import RankingBoard from "@/components/ranking/RankingBoard";
 
 export default function RankingPage() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-10 px-4 py-12">
+    <main className="flex flex-1 flex-col items-center gap-10 px-8 py-10">
       <Image
         src="/logo/logo-horizontal.png"
         alt="Quickspot"
@@ -12,23 +12,26 @@ export default function RankingPage() {
         priority
         className="h-auto w-52"
       />
-      <h1 className="text-3xl font-extrabold">Ranking ao vivo</h1>
 
-      <div className="flex w-full max-w-2xl items-center gap-4 rounded-2xl border border-black/5 bg-white px-6 py-4 shadow-sm">
-        <Image
-          src="/prize/nespresso.png"
-          alt="Cafeteira Nespresso"
-          width={160}
-          height={160}
-          className="h-24 w-24 object-contain"
-        />
-        <div>
-          <p className="text-sm font-medium text-foreground/50">Prêmio para o 1º lugar</p>
-          <p className="text-lg font-semibold">Cafeteira Nespresso</p>
+      <div className="grid w-full max-w-6xl flex-1 grid-cols-1 items-center gap-12 md:grid-cols-2">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Image
+            src="/prize/nespresso.png"
+            alt="Cafeteira Nespresso"
+            width={480}
+            height={480}
+            priority
+            className="h-auto w-full max-w-sm object-contain"
+          />
+          <p className="text-xl font-medium text-foreground/50">Prêmio para o 1º lugar</p>
+          <p className="text-4xl font-extrabold">Cafeteira Nespresso</p>
+        </div>
+
+        <div className="flex flex-col items-center gap-6">
+          <h1 className="text-3xl font-extrabold">Ranking ao vivo</h1>
+          <RankingBoard />
         </div>
       </div>
-
-      <RankingBoard />
     </main>
   );
 }
