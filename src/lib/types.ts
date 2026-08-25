@@ -5,6 +5,10 @@ export type Question = {
   correct_option: number;
   time_limit_seconds: number | null;
   order_index: number;
+  /** Rotation category ("cinema" | "tecnico" | "gestao"), null for the fixed question. */
+  category: string | null;
+  /** Marks the one question that's always included last, outside the category rotation. */
+  is_fixed: boolean;
   created_at: string;
 };
 

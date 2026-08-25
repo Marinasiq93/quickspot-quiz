@@ -17,6 +17,10 @@ create table if not exists quiz_questions (
   correct_option smallint not null,
   time_limit_seconds int,
   order_index int not null,
+  -- Rotation category ("cinema" | "tecnico" | "gestao"); null for the fixed question.
+  category text,
+  -- Marks the one question always shown last, outside the category rotation.
+  is_fixed boolean not null default false,
   created_at timestamptz not null default now()
 );
 
