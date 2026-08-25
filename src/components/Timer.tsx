@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Clock } from "lucide-react";
 
 /**
  * Cronômetro visual — só mostra quanto tempo a pessoa está levando na
@@ -21,8 +22,8 @@ export default function Timer() {
 
   return (
     <div className="flex items-center gap-2 text-sm font-semibold tabular-nums text-foreground/60">
-      <span className="h-2 w-2 rounded-full bg-coral" />
-      <span>{(elapsedMs / 1000).toFixed(1)}s</span>
+      <Clock size={16} className="text-coral" />
+      <span>{Math.floor(elapsedMs / 1000)}s</span>
     </div>
   );
 }
