@@ -73,12 +73,6 @@ export default function QuizFlow() {
     setTimeout(goToNextOrSubmit, ADVANCE_DELAY_MS);
   }
 
-  function handleExpire() {
-    if (selectedOption !== null) return;
-    recordAnswer(questions[currentIndex].id, null);
-    goToNextOrSubmit();
-  }
-
   async function submitQuiz() {
     setStage("submitting");
     const lead = leadRef.current;
@@ -136,7 +130,7 @@ export default function QuizFlow() {
     const question = questions[currentIndex];
     return (
       <div className="flex w-full max-w-xl flex-col items-center gap-6">
-        <Timer key={currentIndex} durationSeconds={question.time_limit_seconds} onExpire={handleExpire} />
+        <Timer key={currentIndex} />
         <QuestionCard
           question={question}
           questionNumber={currentIndex + 1}

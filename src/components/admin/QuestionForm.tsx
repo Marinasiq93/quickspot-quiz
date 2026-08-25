@@ -137,7 +137,10 @@ export default function QuestionForm(props: Props) {
 
       <div>
         <label className="mb-1 block text-sm font-medium">
-          Tempo limite (segundos) <span className="font-normal text-foreground/50">— opcional, usa o padrão se vazio</span>
+          Tempo de referência p/ bônus de velocidade (segundos){" "}
+          <span className="font-normal text-foreground/50">
+            — opcional, usa o padrão se vazio. Não limita o tempo de resposta, só afeta a pontuação.
+          </span>
         </label>
         <input
           type="number"
